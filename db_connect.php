@@ -12,13 +12,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Create Database
+// ✅ Create database if it doesn't exist
 $sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully";
-} else {
-    echo "Error creating database: " . $conn->error;
-}
+$conn->query($sql); // No echo/output here
 
-$conn->close();
+// ✅ Now select the database
+$conn->select_db($dbname);
+
+// ⚠️ Don't close the connection here!
+// Leave it open so files like view_user.php or dashboard.php can use it
 ?>

@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         // Invalid credentials
         echo "<script>alert('Invalid username or password. Please try again.');</script>";
-        echo "<script>window.location.href = 'index.html';</script>";
+        echo "<script>window.location.href = 'index.php';</script>";
     }
 
     // Close the statement
