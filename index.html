@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Project VI</title>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/14bbef59d9.js" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/bbstyle.css">
+
+  <!-- Inline CSS for Modals -->
+  <style>
+    .login-modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .login-modal.show {
+      display: flex;
+    }
+    .login-container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .login-btn, .signup-btn {
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      background-color: #0d6efd;
+      color: #fff;
+      border-radius: 5px;
+    }
+    .forgot-password {
+      font-size: 0.9rem;
+      display: block;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav>
+      <h2 class="nav-title">DIU CSE Football Association</h2>
+      <ul class="nav-option">
+        <a href="4589SRS.pdf" download="4589SRS.pdf">
+          <button class="download-btn">Download SRS</button>
+        </a>
+        <li class="bigsize">Home</li>
+        <li>About</li>
+        <li>Contact Us</li>
+        <li class="login-press" onclick="toggleLogin()">Login</li>
+        <li class="signup-press" onclick="toggleSignup()">Sign Up</li>
+      </ul>
+    </nav>
+    <div class="banner">
+      <div class="banner-container">
+        <h1 class="banner-title">Welcome to<br />the Family of CSE Footballers</h1>
+        <p class="banner-description">Join the community, connect with players, and grow your football journey.</p>
+        <button class="btn-primary"><i class="bi bi-1-circle-fill"></i> Explore More</button>
+      </div>
+      <img class="banner-image" src="images/banner.png" alt="Banner Image" />
+    </div>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-container">
+      <span class="close-btn" onclick="toggleLogin()">×</span>
+      <h2>Login</h2>
+      <form>
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" required />
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required />
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+        <p>Don't have an account? <a href="javascript:void(0);" onclick="toggleSignup(); toggleLogin();">Sign Up</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div id="signupModal" class="login-modal">
+    <div class="login-container">
+      <span class="close-btn" onclick="toggleSignup()">×</span>
+      <h2>Sign Up</h2>
+      <form>
+        <div class="form-group">
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" required />
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" required />
+        </div>
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" required />
+        </div>
+        <div class="form-group">
+          <label for="batch">Batch</label>
+          <input type="text" id="batch" placeholder="e.g. 49th" required />
+        </div>
+        <div class="form-group">
+          <label for="position">Position</label>
+          <input type="text" id="position" placeholder="e.g. Forward" required />
+        </div>
+        <div class="form-group">
+          <label for="jersey-number">Jersey Number</label>
+          <input type="number" id="jersey-number" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <button type="submit" class="signup-btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer mt-5 text-center">
+    <p class="footer-text">© 2024 DIU CFA. All rights reserved.</p>
+  </footer>
+
+
+  <!-- Main Content -->
+  <!-- Feature section starts -->
+  <main>
+    <section class="features">
+        <div class="feature">
+            <div class="feature-image"><img src="images/team1.png" alt=""></div>
+            <div class="feature-image"><img src="images/team2.png" alt=""></div>
+            <div class="feature-image"><img src="images/team3.png" alt=""></div>
+            <div class="feature-image"><img src="images/team4.png" alt=""></div>
+        </div>
+        <div class="feature-detail">
+            <h2 class="feature-list-title"><span class="quick-list">Our key players</span> of CFA<br><span
+                    class="primary-color">Shinning</span></h2>
+            <p class="feature-description"><span class="secondary-color">Shahriar, Akram, Siam, Soumik all these
+                    players are doing remarkable with their performances and all achievement</span></p>
+            <button class="btn-primary"><i class="bi bi-2-square-fill"></i> Know More</button>
+        </div>
+    </section>
+
+    <!-- Feature section ends -->
+
+    <!-- Special feature section starts -->
+
+    <section class="special-features">
+        <div class="special-features-left">
+            <div class="special-feature-head">
+                <h2 class="special-feature-title"><span class="special-text">Our fresh mind </span>
+                    <br>
+                    <span class="special-text">
+                        Talent and Class
+                    </span>
+                </h2>
+                <p class="special-feature-description"> Players from all batches are joining CFA to have a
+                    tremendous journey in their university football career. Here is an example</p>
+            </div>
+            <div class="special-feature-box">
+                <h2 class="special-feature-box-heading">Dedication</h2>
+                <p class="special-feature-box-description">There are many variations of passages of Lorem Ipsum
+                    available, but the majority have suffered alteration in some form, by injected humour, or
+                    randomised...........</p>
+            </div>
+            <div class="special-feature-box">
+                <h2 class="special-feature-box-heading">Passion</h2>
+                <p class="special-feature-box-description">There are many variations of passages of Lorem Ipsum
+                    available, but the majority have suffered alteration in some form, by injected humour, or
+                    randomised...........</p>
+            </div>
+            <div class="special-feature-box">
+                <h2 class="special-feature-box-heading">Attention</h2>
+                <p class="special-feature-box-description">There are many variations of passages of Lorem Ipsum
+                    available, but the majority have suffered alteration in some form, by injected humour, or
+                    randomised...........</p>
+            </div>
+            <div class="special-feature-box">
+                <h2 class="special-feature-box-heading">Discipline</h2>
+                <p class="special-feature-box-description">There are many variations of passages of Lorem Ipsum
+                    available, but the majority have suffered alteration in some form, by injected humour, or
+                    randomised...........</p>
+            </div>
+
+        </div>
+        <div class="special-features-img">
+            <img class="special-features-image" src="images/architect.png" alt="">
+
+        </div>
+
+    </section>
+    <!-- ----------------------------------
+||||| SPECIAL FEATURE SECTION ENDED |||||
+-------------------------------- -->
+
+
+
+    <!-- Button positioning  -->
+    <div id="positioning-button">
+        <button class="btn-special">
+            <span class="button-special-text">2nd Year Student</span><br><span class="normal">Fresher in CFA</span>
+        </button>
+    </div>
+    <!-- Button positioning section ended here  -->
+    <!-- fact section -->
+    <section class="fact-list">
+        <div class="fact-info">
+            <h2 class="fact-title">Some Facts</h2>
+            <p class="fact-description">There are many variations of passages of Lorem Ipsum available, but the
+                majority have suffered alteration.</p>
+        </div>
+        <div class="fact-container">
+            <div class="fact">
+                <img class="fact-image" src="images/icons/ribon.png" alt="">
+                <p class="fact-title">54</p>
+                <p class="fact-detail">Awards Winnings</p>
+            </div>
+            <div class="fact">
+                <img class="fact-image" src="images/icons/projects.png" alt="">
+                <p class="fact-title">1458</p>
+                <p class="fact-detail">Total Registration </p>
+            </div>
+            <div class="fact">
+                <img class="fact-image" src="images/icons/customers.png" alt="">
+                <p class="fact-title">590</p>
+                <p class="fact-detail">Players Registered</p>
+            </div>
+            <div class="fact">
+                <img class="fact-image" src="images/icons/email.png" alt="">
+                <p class="fact-title">278</p>
+                <p class="fact-detail">Active Players</p>
+            </div>
+        </div>
+
+    </section>
+    <!-- ----------------------------------
+     ||||| EXTRA SECTION |||||
+-------------------------------- -->
+    <section class="about-myself">
+        <div>
+            <h3 class="myself-title">Hey, This is Shahriar </h3>
+            <p class="myself-description">Currently I am studying CSE at Daffodil International
+                University.<br><br>Currently CEO at DIU CFA <br>living with dreams</p>
+
+            <h4 class="web-ambition">Ambition on CFA</h4>
+
+            <h5 class="ambition-point"><i class="fa-solid fa-chevron-right"></i> Networking</h5>
+            <h5 class="ambition-point"><i class="fa-solid fa-chevron-right"></i> Gaining skills</h5>
+            <h5 class="ambition-point"><i class="fa-solid fa-chevron-right"></i> Building Community</h5>
+            <h5 class="link-me">Connect With Me</h5>
+            <a class="link-icon" href="https://www.facebook.com/shahriarbd10/"><img src="images/icons/fb.png"
+                    alt=""></a>
+            <a class="link-icon" href=""><img src="images/icons/twitter.png" alt=""></a>
+
+        </div>
+
+        <img class="my-image" src="images/shahriarpng.png" alt="my photo">
+
+
+
+    </section>
+
+    <!-- ----------------------------------
+     ||||| EXTRA SECTION -END |||||
+-------------------------------- -->
+
+    <!-- Sponsor Section -->
+
+    <section class="sponsors">
+        <div class="sponsor-info">
+            <h2 class="sponsor-title">Our Sponsors</h2>
+            <p class="sponsor-description">There are many variations of passages of Lorem Ipsum available,
+                but<br>the majority have suffered alteration.</p>
+        </div>
+        <div class="sponsor-img">
+            <div class="sponsor">
+                <img src="images/sponsors/spotify.png" alt="">
+            </div>
+            <div class="sponsor">
+                <img src="images/sponsors/amazon.png" alt="">
+            </div>
+            <div class="sponsor">
+                <img src="images/sponsors/google.png" alt="">
+            </div>
+            <div class="sponsor">
+                <img src="images/sponsors/telerama.png" alt="">
+            </div>
+            <div class="sponsor">
+                <img src="images/sponsors/figma.png" alt="">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sponsor Section  Ended here-->
+
+</main>
+<!-- Main Section ended here -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-text">All rights reserved copyright © 2024 DIU CFA</p>
+  </footer>
+
+  <!-- Inline Script for Modal Toggle -->
+  <script>
+    function toggleLogin() {
+      document.getElementById('loginModal').classList.toggle('show');
+    }
+
+    function toggleSignup() {
+      document.getElementById('signupModal').classList.toggle('show');
+    }
+  </script>
+</body>
+
+</html>
