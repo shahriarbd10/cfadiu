@@ -332,17 +332,14 @@ $blogs = $conn->query("SELECT blogs.*, users.full_name FROM blogs JOIN users ON 
   <!-- JS -->
   <script src="scripts/script.js"></script>
   <script>
-  function toggleLogin() {
-    const modal = document.getElementById('loginModal');
-    modal.classList.toggle('show'); 
-  }
+    function toggleLogin() {
+      document.getElementById('loginModal').classList.toggle('show');
+    }
 
-  function toggleSignup() {
-    const modal = document.getElementById('signupModal');
-    modal.classList.toggle('show');
-  }
-</script>
-
+    function toggleSignup() {
+      document.getElementById('signupModal').classList.toggle('show');
+    }
+  </script>
 
 </body>
 
